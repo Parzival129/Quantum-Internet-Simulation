@@ -2,12 +2,14 @@
 import time
 import os
 import sys
+import htmlmin
 
 # rich for pretty terminal stuff
 from rich.console import Console
 from rich.progress import track
 from rich.table import Table
 from rich.syntax import Syntax
+from rich import inspect
 from time import sleep
 
 # qchat for communications
@@ -59,6 +61,12 @@ def main():
         except:
             print ("Whoops! The file was not found!")
 
+        # Minify html
+
+        content = htmlmin.minify(content)
+
+        print (content)
+        inspect(content)
         # Send html file as string, with Super Dense Coding protocol
         alice_client.sendSuperDenseMessage("Bob", content)
         print ("")
@@ -129,9 +137,11 @@ def main():
                         f.write('\n')
 
                 # stoping quantum net
-                os.system("simulaqron stop")
+                # os.system("simulaqron stop")
                 # opening recieved html file in chromium
-                os.system("chromium recieved_file.html")                    
+                os.system("simulaqron stop")
+                os.system("chromium recieved_file.html")
+                main()                    
                                 
                 break
                 
